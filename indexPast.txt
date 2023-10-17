@@ -1,0 +1,109 @@
+app.post('/chat', async (req, res) => {
+    // Obtaining Both Params
+    const userInput = req.body.userInput;
+    const chatHistory = req.body.chatHistory || [];
+
+    console.log("chatHistory (backend) is " + chatHistory)
+    //var promptInput
+
+    try {
+
+        // Construct messages by iterating over the history
+        const messages = chatHistory.map(([role, content]) => ({
+            role,
+            content,
+        }));
+
+        // Add latest user input
+        messages.push({ role: 'user', content: userInput });
+
+        console.log("messages are " + messages)
+
+        // Call the API with user input & history
+        const completion = await openai.chat.completions.create({
+            messages: messages,
+            model: 'gpt-3.5-turbo',
+        });
+
+        // Get completion text/content
+        //const completionText = completion.data.choices[0].message.content;
+        const completionText = completion.choices[0].message.content
+
+        console.log(colors.yellow((completion.choices)))
+
+        const inputString = completionText
+
+        console.log(colors.yellow('=================================='));
+        console.log(colors.green('Bot: ' + inputString));
+        console.log(colors.yellow('=================================='));
+
+        //const resultsSummary = [];
+
+        const inputStringUnCut = inputString.split("#");
+
+        var inputStringCut
+
+        if (inputStringUnCut[0][1] == 'I'){
+        inputStringCut = inputStringUnCut.slice(2);
+        } else {
+        inputStringCut = inputStringUnCut.slice(1);
+        }
+
+        //resultsSummary.push(inputStringCut);
+
+        console.log("Image Link:", inputStringCut[0]);
+        console.log("\n");
+        console.log("Caption:", inputStringCut[1]);
+        console.log(colors.yellow('================================='));
+
+        const imageURL = inputStringCut[0]
+        const caption = inputStringCut[1]
+
+        // Extract Descriptors
+        /*const descriptorsMatch = inputString.match(/Descriptors: (.*?)(?=\n|$)/);
+        const descriptors = descriptorsMatch ? descriptorsMatch[1].trim() : '';*/
+
+        // Extract Image URL
+        /*const imageURLMatch = inputString.match(/Image URL: (.*?)(?=\n|$)/);
+        const imageURL = imageURLMatch ? imageURLMatch[1].trim() : '';*/
+
+        // Extract Caption
+        /*const captionMatch = inputString.match(/Caption: "(.*?)(?=")/);
+        const caption = captionMatch ? captionMatch[1].trim() : '';*/
+
+
+        //console.log(colors.green('Desc 1: ') + expandedDescription);
+        //console.log(colors.green('Desc 2: ') + visualStyle);
+        //console.log(colors.green('Desc 3: ') + artisticStyle);
+        //console.log(colors.green('DescMain: ') + descriptors);
+        //console.log(colors.green('Img URL: ') + imageURL);
+        //console.log(colors.green('Caption: ') + caption);
+
+        //console.log(imageURL == null)
+        //console.log(descriptors == "")
+
+        // Update history with user input and assistant response
+        //chatHistory.push(['user', userInput]);
+        //chatHistory.push(['assistant', completionText]);
+
+        // Create an empty array
+        const resArray = [];
+
+        //descriptors == null || visualStyle == null || artisticStyle == null || imageURL == null || caption == null
+
+        if (imageURL == "" || caption == "") {
+            resArray.push("An error occured");
+        } else {
+
+            // Add the variables to the array using the push method
+            //resArray.push(expandedDescription, visualStyle, artisticStyle, imageURL, caption);
+            resArray.push(imageURL, caption);
+        }
+
+        return res.json({ response: resArray });
+
+    } catch (error) {
+        console.error(colors.red(error));
+        return res.status(500).json({ error: 'Failed to generate response' });
+    }
+});

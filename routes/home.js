@@ -10,6 +10,53 @@ router.get("/", async (req, res, next) => {
   return res.sendFile(filePath);
 });
 
+router.get("/jar", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "indexGrat.html");
+  return res.sendFile(filePath);
+});
+
+
+router.get("/picture", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "picture.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/home", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "writing.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/writingroast", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "writingroast.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/writingtips", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "writingtips.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/opinionroast", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "opinionroast.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/opiniontips", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "opiniontips.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/coderoast", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "coderoast.html");
+  return res.sendFile(filePath);
+});
+
+router.get("/codetips", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "codetips.html");
+  return res.sendFile(filePath);
+});
+
+
 /*
 app.get('/', (req: Request, res: Response) => {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')});

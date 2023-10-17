@@ -1,0 +1,13 @@
+#pic-cap-container {
+
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    height: 100%; /* Fill the height of the container */
+  }
+  
+  /* Optional: Adjust the width of the image as needed */
+  #centered-image {
+    margin: auto;
+    max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+    height: auto; /* Maintain the aspect ratio */
+  }

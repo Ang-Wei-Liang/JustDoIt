@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fortune Cookie Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #fortuneDisplay {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fortune Cookie Generator</h1>
+    <button id="generateButton">Generate Fortune Cookie</button>
+    <div id="fortuneDisplay"></div>
+    <script>
+        // Array of fortune cookie messages
+        const fortunes = [
+            "Your future looks bright.",
+            "Good things come to those who wait.",
+            "Opportunities will come your way.",
+            "A pleasant surprise is in store for you.",
+            "You will have a day full of success.",
+            "Adventure awaits you in the future.",
+            "Hard work will pay off soon.",
+            "A new friendship will come your way.",
+            "You will find joy in the little things.",
+            "Today is your lucky day."
+        ];
+
+        // Function to generate a random fortune
+        function generateFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            return fortunes[randomIndex];
+        }
+
+        // Display the generated fortune
+        function displayFortune() {
+            const fortuneDisplay = document.getElementById("fortuneDisplay");
+            fortuneDisplay.textContent = generateFortune();
+        }
+
+        // Event listener for the "Generate Fortune Cookie" button
+        const generateButton = document.getElementById("generateButton");
+        generateButton.addEventListener("click", displayFortune);
+    </script>
+</body>
+</html>
