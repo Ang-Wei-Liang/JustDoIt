@@ -31,17 +31,25 @@ body {
     max-height: 200px; /* Set a maximum height for the image, adjust as needed */
 }
 
-.textbox-container {
-    text-align: center;
-    margin-top: 20px; /* Adjust the margin as needed for spacing */
-    margin-bottom: 30px;
-}
+
 
 
 #myTextbox {
     width: 200px; /* Adjust the width as needed */
     text-align: center;
 }
+
+#textbox-container2 {
+    text-align: center;
+    margin-top: -20px;
+    //margin-top: 10px; /* Adjust the margin as needed for spacing */
+}
+
+#myTextbox2 {
+    width: 160px; /* Adjust the width as needed */
+    text-align: center;
+}
+
 
 button {
     font-size: 18px;
@@ -107,4 +115,18 @@ button strong {
     align-items: center;
     //height: 100vh;
     margin: 0;
+}
+
+#textbox-container2 {
+    display: flex;
+    align-items: center;
+}
+
+#myTextbox2 {
+    flex: 1; /* This will make the input box expand to fill the available space */
+    margin-right: 10px; /* Add some space between the input and the label */
+}
+
+#secondslabel {
+    margin-top: 14px;
 }

@@ -38,11 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = (currentIndex + 1) % placeHolderTaskArr.length; // Loop through the array
     }
 
+    //These two I choose not to add in, as the placeholders can be kinda confusing and unappealing no offense
     // Call the function to set the initial placeholder
-    updatePlaceholder();
+    //updatePlaceholder();
 
     // Set an interval to change the placeholder every 3 seconds
-    const intervalId = setInterval(updatePlaceholder, 15000);
+    //const intervalId = setInterval(updatePlaceholder, 15000);
 
 
     // Function to hide elements
@@ -52,7 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('audio'),
             document.getElementById('myTextbox'),
             document.getElementById('closeButton'),
-            document.getElementById('image-container')
+            document.getElementById('image-container'),
+            document.getElementById('myTextbox2'),
+            document.getElementById('inlabel'),
+            document.getElementById('secondslabel')
 
         ];
 
@@ -70,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('audio'),
             document.getElementById('myTextbox'),
             //document.getElementById('closeButton'),
-            document.getElementById('countdown')
+            document.getElementById('countdown'),
+            document.getElementById('myTextbox2'),
+            document.getElementById('inlabel'),
+            document.getElementById('secondslabel')
         ];
 
         elementsToShow.forEach(element => {
@@ -84,7 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     button.addEventListener('click', function () {
-        let countdown = 11;
+        const myTextbox = document.getElementById("myTextbox2");
+        var countdown = 11
+        const value = myTextbox.value;
+
+        const intValue = parseInt(value, 10);
+
+        if (!isNaN(intValue) && intValue > 0) {
+            // The input is a valid positive integer
+            countdown = intValue
+        } else {
+            // The input is not a valid positive integer
+            countdown = 11
+        }
+
         button.disabled = true; // Disable the button
         var actionText = textBoxElement.value;
 

@@ -12,6 +12,12 @@ router.get("/", async (req, res, next) => {
   return res.sendFile(filePath);
 });
 
+/*
+router.get("/count", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "indexCountdown.html");
+  return res.sendFile(filePath);
+});*/
+
 
 
 
