@@ -2,7 +2,8 @@
 const express = require("express");
 const home = require("./routes/home");
 
-const openai = require('./config/open-ai');
+//const openai = require('./config/open-ai');
+
 const colors = require('colors');
 
 
