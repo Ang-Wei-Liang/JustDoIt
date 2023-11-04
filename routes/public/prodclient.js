@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     button.addEventListener('click', function () {
-        let countdown = 5;
+        let countdown = 11;
         button.disabled = true; // Disable the button
         var actionText = textBoxElement.value;
 
