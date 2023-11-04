@@ -1,0 +1,110 @@
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#topLeftButton {
+    position: absolute;
+    top: 10px; /* Adjust the top position as needed */
+    left: 10px; /* Adjust the left position as needed */
+    width: 60px; /* Adjust the width and height to make it square */
+    height: 40px;
+}
+
+
+#image-container {
+    display: flex;
+    justify-content: center; /* Center align the image horizontally */
+    align-items: center; /* Center align the image vertically */
+    margin-top: -25px;
+    margin-bottom: 70px; /* Adjust the margin as needed */
+}
+
+#myImage {
+    max-width: 100%; /* Ensure the image doesn't exceed its container width */
+    max-height: 200px; /* Set a maximum height for the image, adjust as needed */
+}
+
+.textbox-container {
+    text-align: center;
+    margin-top: 20px; /* Adjust the margin as needed for spacing */
+    margin-bottom: 30px;
+}
+
+
+#myTextbox {
+    width: 200px; /* Adjust the width as needed */
+    text-align: center;
+}
+
+button {
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+button strong {
+    font-weight: bold;
+}
+
+#closeButton {
+    background-color: transparent; /* Set the initial background color */
+    color: black; /* Set the initial text color */
+    border: 2px solid red; /* Add a border to the button for a better visual effect */
+    padding: 10px 20px; /* Adjust padding as needed */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+    margin-top: 25px;
+    //margin: auto;
+    //padding: auto;
+}
+
+#closeButton:hover {
+    background-color: red; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+    cursor: pointer; /* Change cursor to a pointer on hover for better user experience */
+    //border-color: white;
+}
+
+#bacButton {
+    margin-top: 20px;
+}
+
+#backButton:hover {
+    background-color: black; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+    cursor: pointer; /* Change cursor to a pointer on hover for better user experience */
+}
+
+#countdown {
+    font-size: 24px;
+    margin-top: 20px;
+    
+}
+
+.countdownStyle, #taskTextTranfser {
+    font-weight: bold;
+    color: white;
+    //font-family: 'Bebas Neue', sans-serif;
+}
+
+#taskTextTranfser {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#main-container-color{
+    padding: 40px;
+    //background-color: purple;
+    //align-items-center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //height: 100vh;
+    margin: 0;
+}

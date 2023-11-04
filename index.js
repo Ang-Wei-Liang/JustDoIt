@@ -40,7 +40,6 @@ app.use("/", home);
 
 
 /*var admin = require("firebase-admin");
-
 var serviceAccount = require("path/to/serviceAccountKey.json");
 
 admin.initializeApp({
@@ -61,7 +60,7 @@ const admin = require('firebase-admin');
 
 // Initialize Firebase using environment variables
 
-const serviceAccount = require('./roastme-c7654-firebase-adminsdk-ow3h3-68e716b30d.json');
+//const serviceAccount = require('./roastme-c7654-firebase-adminsdk-ow3h3-68e716b30d.json');
 /*const serviceAccount = {
   "type": process.env.FIREBASE_TYPE,
   "project_id": process.env.FIREBASE_PROJECT_ID,
@@ -76,10 +75,11 @@ const serviceAccount = require('./roastme-c7654-firebase-adminsdk-ow3h3-68e716b3
   "universe_domain": process.env.FIREBASE_UNIVERSE_DOMAIN
 };*/
 
+/*
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   //databaseURL: 'https://your-firebase-project.firebaseio.com', // Replace with your project's database URL
-});
+});*/
 
 // Now you can use Firebase admin methods with the initialized app
 
@@ -183,191 +183,6 @@ app.get('/', (req, res) => {
 });*/
 
 
-
-app.post('/chat', async (req, res) => {
-    // Obtaining Both Params
-    const userInput = req.body.userInput;
-    const chatHistory = req.body.chatHistory || [];
-
-    console.log("chatHistory (backend) is " + chatHistory)
-    //var promptInput
-
-    try {
-
-        // Construct messages by iterating over the history
-        const messages = chatHistory.map(([role, content]) => ({
-            role,
-            content,
-        }));
-
-        // Add latest user input
-        messages.push({ role: 'user', content: userInput });
-
-        console.log("messages are " + messages)
-
-        // Call the API with user input & history
-        const completion = await openai.chat.completions.create({
-            messages: messages,
-            model: 'gpt-3.5-turbo',
-        });
-
-        // Get completion text/content
-        //const completionText = completion.data.choices[0].message.content;
-        const completionText = completion.choices[0].message.content
-
-        console.log(colors.yellow((completion.choices)))
-
-        const inputString = completionText
-
-        console.log(colors.yellow('=================================='));
-        console.log(colors.green('Bot: ' + inputString));
-        console.log(colors.yellow('=================================='));
-
-        //const resultsSummary = [];
-
-        const inputStringUnCut = inputString.split("#");
-
-        var inputStringCut
-
-        if (inputStringUnCut[0][1] == 'I'){
-        inputStringCut = inputStringUnCut.slice(2);
-        } else {
-        inputStringCut = inputStringUnCut.slice(1);
-        }
-
-        //resultsSummary.push(inputStringCut);
-
-        console.log("Image Link:", inputStringCut[0]);
-        console.log("\n");
-        console.log("Caption:", inputStringCut[1]);
-        console.log(colors.yellow('================================='));
-
-        const imageURL = inputStringCut[0]
-        const caption = inputStringCut[1]
-
-        // Create an empty array
-        const resArray = [];
-
-        if (imageURL == "" || caption == "") {
-            resArray.push("An error occured");
-        } else {
-            // Add the variables to the array using the push method
-            //resArray.push(expandedDescription, visualStyle, artisticStyle, imageURL, caption);
-            resArray.push(imageURL, caption);
-        }
-
-        return res.json({ response: resArray });
-
-    } catch (error) {
-        console.error(colors.red(error));
-        return res.status(500).json({ error: 'Failed to generate response' });
-    }
-});
-
-
-app.post('/chatDebateRoast', async (req, res) => {
-    // Obtaining Both Params
-    const userReasonsInput = req.body.userReasonsInput;
-    const searchinputlocks = req.body.searchinputlocks;
-    const chatHistoryDebateRoast = req.body.chatHistoryDebateRoast || [];
-
-
-    userReasonsInputMessageFormat = "My stance is that I believe in " + searchinputlocks + "my reasons are " + userReasonsInput;
-
-    console.log("userReasonsInputMessageFormat is " + userReasonsInputMessageFormat)
-    //var promptInput
-
-    try {
-
-        // Construct messages by iterating over the history
-        const messages = chatHistoryDebateRoast.map(([role, content]) => ({
-            role,
-            content,
-        }));
-
-        // Add latest user input
-        messages.push({ role: 'user', content: userReasonsInputMessageFormat });
-
-        //console.log("messages are " + messages)
-
-        // Call the API with user input & history
-        const completion = await openai.chat.completions.create({
-            messages: messages,
-            model: 'gpt-3.5-turbo',
-        });
-
-        // Get completion text/content
-        //const completionText = completion.data.choices[0].message.content;
-        const completionText = completion.choices[0].message.content
-
-        //console.log(colors.yellow((completion.choices)))
-
-        const outputStringDebateRoast = completionText
-
-        console.log(colors.yellow('=================================='));
-        console.log(colors.green('Bot: ' + outputStringDebateRoast));
-        console.log(colors.yellow('=================================='));
-
-        return res.json({ response: outputStringDebateRoast });
-
-    } catch (error) {
-        console.error(colors.red(error));
-        return res.status(500).json({ error: 'Failed to generate response' });
-    }
-});
-
-
-app.post('/chatWritingRoast', async (req, res) => {
-    // Obtaining Both Params
-
-    const writingInput = req.body.userWritingInput;
-    const chatHistoryWritingRoast = req.body.chatHistoryWritingRoast || [];
-
-
-    //userReasonsInputMessageFormat = "My stance is that I believe in " + searchinputlocks + "my reasons are " + userReasonsInput;
-
-    //console.log("userReasonsInputMessageFormat is " + userReasonsInputMessageFormat)
-
-    //var promptInput
-
-    try {
-
-        // Construct messages by iterating over the history
-        const messages = chatHistoryWritingRoast.map(([role, content]) => ({
-            role,
-            content,
-        }));
-
-        // Add latest user input
-        messages.push({ role: 'user', content: writingInput });
-
-        //console.log("messages are " + messages)
-
-        // Call the API with user input & history
-        const completion = await openai.chat.completions.create({
-            messages: messages,
-            model: 'gpt-3.5-turbo',
-        });
-
-        // Get completion text/content
-        //const completionText = completion.data.choices[0].message.content;
-        const completionText = completion.choices[0].message.content
-
-        //console.log(colors.yellow((completion.choices)))
-
-        const outputStringWritingRoast = completionText
-
-        console.log(colors.yellow('=================================='));
-        console.log(colors.green('Bot: ' + outputStringWritingRoast));
-        console.log(colors.yellow('=================================='));
-
-        return res.json({ response: outputStringWritingRoast });
-
-    } catch (error) {
-        console.error(colors.red(error));
-        return res.status(500).json({ error: 'Failed to generate response' });
-    }
-});
 
 
 

@@ -5,15 +5,23 @@ const path = require("path");
 // Import the EJS module
 const ejs = require("ejs");
 
+
+
 router.get("/", async (req, res, next) => {
   const filePath = path.join(__dirname, "views", "index.html");
   return res.sendFile(filePath);
 });
 
-router.get("/jar", async (req, res, next) => {
-  const filePath = path.join(__dirname, "views", "indexGrat.html");
+
+
+
+
+/*router.get("/", async (req, res, next) => {
+  const filePath = path.join(__dirname, "views", "index.html");
   return res.sendFile(filePath);
 });
+
+
 
 
 router.get("/picture", async (req, res, next) => {
@@ -54,7 +62,7 @@ router.get("/coderoast", async (req, res, next) => {
 router.get("/codetips", async (req, res, next) => {
   const filePath = path.join(__dirname, "views", "codetips.html");
   return res.sendFile(filePath);
-});
+});*/
 
 
 /*
